@@ -1,0 +1,11 @@
+.cache
+.DS_Store
+.tmp
+*.diff
+*.err
+*.log
+*.orig
+*.rej
+*.swo
+*.swp
+*.vi
