@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  web:
+    env_file:
+      - ./web/.env.dev
+    container_name: blueoceandocker_web
+    image: ghcr.io/buzzingpixel/blueoceandocker_web
+    environment:
+      - HOSTNAME=blueoceandocker_web
+      - NODE_ENV=development
+    healthcheck:
+      disable: true
+    command:
+      - "node_modules/.bin/next"
+      - "dev"
+      - "-p"
+      - "80"
+    volumes:
+      - ../web:/app:delegated
+    expose:
+      - 80
+    networks:
+      traefik:
+      default:
+        aliases:
+          - web
+    labels:
+      ## Traefik config ##
+      - traefik.enable=true
+      - traefik.docker.network=traefik-dev_default
+
+      ## Traefik Web ##
+      # Web redirect to https
+      - traefik.http.routers.blueoceandocker_web.entrypoints=web
+      - traefik.http.routers.blueoceandocker_web.rule=Host(`blueoceandocker.localtest.me`)
+      - traefik.http.routers.blueoceandocker_web.middlewares=https-redirect
+
+      # Web secure
+      - traefik.http.routers.blueoceandocker_web-secure.entrypoints=websecure
+      - traefik.http.routers.blueoceandocker_web-secure.tls=true
+      - traefik.http.routers.blueoceandocker_web-secure.rule=Host(`blueoceandocker.localtest.me`)
+
+networks:
+  traefik:
+    name: traefik-dev_default
+    external: true

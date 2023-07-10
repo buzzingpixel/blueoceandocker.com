@@ -1,0 +1,46 @@
+{
+    "name": "blueoceandocker.com",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@headlessui/react": "^1.7.15",
+        "@heroicons/react": "^2.0.18",
+        "@tailwindcss/typography": "^0.5.9",
+        "next": "13.4.9",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-error-boundary": "^4.0.10",
+        "sleep-promise": "^9.1.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.22.8",
+        "@babel/eslint-parser": "^7.22.7",
+        "@babel/preset-env": "^7.22.7",
+        "@types/node": "20.4.1",
+        "@types/react": "18.2.14",
+        "@typescript-eslint/eslint-plugin": "^5.61.0",
+        "@typescript-eslint/parser": "^5.61.0",
+        "autoprefixer": "^10.4.14",
+        "eslint": "8.44.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-config-airbnb-typescript": "^17.0.0",
+        "eslint-config-next": "^13.4.9",
+        "eslint-plugin-disable": "^2.0.3",
+        "eslint-plugin-eslint-comments": "^3.2.0",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-jsx-a11y": "^6.7.1",
+        "eslint-plugin-no-jquery": "^2.7.0",
+        "eslint-plugin-promise": "^6.1.1",
+        "eslint-plugin-react": "^7.32.2",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "postcss": "^8.4.25",
+        "tailwindcss": "^3.3.2",
+        "typescript": "5.1.6"
+    }
+}
