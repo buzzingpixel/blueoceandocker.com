@@ -85,7 +85,8 @@
         ],
         "newline-before-return": 1,
         "import/no-named-default": "off",
-        "react/jsx-no-useless-fragment": "off"
+        "react/jsx-no-useless-fragment": "off",
+        "import/prefer-default-export": "off"
     },
     "overrides": [
         {
