@@ -1,0 +1,7 @@
+ignored:
+  - DL3008
+  - DL3029
+  - DL3018
+trustedRegistries:
+  - docker.io
+  - build.rxante.com:4567
