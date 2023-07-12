@@ -45,4 +45,4 @@ ENV NEXT_TELEMETRY_DISABLED 1
 
 HEALTHCHECK --interval=5s --timeout=5s --start-period=10s --retries=10 CMD curl --fail http://localhost/healthcheck/64acc1d2d0301 || exit 1
 
-CMD ["--require", "node_modules/.bin/next", "start", "-p", "80"]
+CMD ["node_modules/.bin/next", "start", "-p", "80"]
