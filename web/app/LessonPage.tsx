@@ -50,7 +50,7 @@ const Page = (
                         <iframe
                             width="560"
                             height="315"
-                            src={`https://www.youtube.com/embed/${currentLesson.youTubeId}`}
+                            src={`https://www.youtube-nocookie.com/embed/${currentLesson.youTubeId}?modestbranding=1&color=white&showinfo=0&showsearch=0&iv_load_policy=3&rel=0`}
                             title={currentLesson.name}
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
