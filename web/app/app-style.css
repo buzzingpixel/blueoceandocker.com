@@ -1,0 +1,10 @@
+/* stylelint-disable selector-class-pattern */
+@import url("https://rsms.me/inter/inter.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@supports (font-variation-settings: normal) {
+    html { font-family: "Inter var", sans-serif; }
+}

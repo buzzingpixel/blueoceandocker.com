@@ -10,7 +10,6 @@
     "dependencies": {
         "@headlessui/react": "^1.7.15",
         "@heroicons/react": "^2.0.18",
-        "@tailwindcss/typography": "^0.5.9",
         "next": "13.4.9",
         "react": "18.2.0",
         "react-dom": "18.2.0",
@@ -21,6 +20,8 @@
         "@babel/core": "^7.22.8",
         "@babel/eslint-parser": "^7.22.7",
         "@babel/preset-env": "^7.22.7",
+        "@tailwindcss/aspect-ratio": "^0.4.2",
+        "@tailwindcss/typography": "^0.5.9",
         "@types/node": "20.4.1",
         "@types/react": "18.2.14",
         "@typescript-eslint/eslint-plugin": "^5.61.0",
