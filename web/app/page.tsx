@@ -1,10 +1,10 @@
 import React from 'react';
+import LessonPage from './LessonPage';
 
-const Page = () => (
-    <>
-        <h1>Next.js Example</h1>
-        <p>This is an example page</p>
-    </>
-);
+export const metadata = {
+    title: 'Lesson 1: What Is Docker | Blue Ocean Docker',
+};
+
+const Page = () => <LessonPage href="/" />;
 
 export default Page;

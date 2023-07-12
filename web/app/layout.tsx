@@ -1,13 +1,18 @@
 import React from 'react';
+import './app-style.css';
+import MainMenu from './MainMenu';
 
 export const metadata = {
-    title: 'Hello World',
-    description: 'Testing Next',
+    title: 'Blue Ocean Docker',
+    description: 'Learn all about how to use Docker!',
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
     <html lang="en">
-        <body>{children}</body>
+        <body>
+            <MainMenu />
+            {children}
+        </body>
     </html>
 );
 
