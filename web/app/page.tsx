@@ -1,8 +1,10 @@
 import React from 'react';
 import LessonPage from './LessonPage';
+import { Lessons } from './Lessons';
 
 export const metadata = {
-    title: 'Lesson 1: What Is Docker | Blue Ocean Docker',
+    title: `${Lessons[0].name} | Blue Ocean Docker`,
+    description: Lessons[0].description,
 };
 
 const Page = () => <LessonPage href="/" />;
