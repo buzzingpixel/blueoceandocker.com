@@ -38,7 +38,7 @@ const MainMenu = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <header className="bg-white">
+        <header className="relative z-50">
             <div className="w-full h-2 bg-cyan-600" />
             <div className="p-6 lg:px-8">
                 <nav className="mx-auto flex max-w-6xl items-center justify-between" aria-label="Global">
