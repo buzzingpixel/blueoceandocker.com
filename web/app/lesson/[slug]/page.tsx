@@ -2,7 +2,7 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata, ResolvingMetadata } from 'next';
 import { Lessons } from '../../Lessons';
-import LessonPage from '../../LessonPage';
+import LessonPage from '../LessonPage';
 
 const getCurrentLesson = ({ params }: {
     params: { slug: string };

@@ -1,5 +1,5 @@
 import React from 'react';
-import LessonPage from './LessonPage';
+import LessonPage from './lesson/LessonPage';
 import { Lessons } from './Lessons';
 
 export const metadata = {

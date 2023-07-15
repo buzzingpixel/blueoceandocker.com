@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
-import { Lessons } from './Lessons';
+import { Lessons } from '../Lessons';
 
 const Page = (
     {
