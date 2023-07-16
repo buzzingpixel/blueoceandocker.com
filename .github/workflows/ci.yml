@@ -63,5 +63,7 @@ jobs:
     steps:
       - id: commit
         uses: pr-mpt/actions-commit-hash@v2
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
       - name: Tag images after successful testing
         run: docker buildx imagetools create ghcr.io/buzzingpixel/blueoceandocker_web:${{ steps.commit.outputs.hash }} --tag ghcr.io/buzzingpixel/blueoceandocker_web:latest
