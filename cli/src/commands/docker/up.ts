@@ -3,6 +3,7 @@ import { execSync } from 'node:child_process';
 import * as fs from 'fs-extra';
 import chalk from 'chalk';
 import Build from './build';
+import EnsureDevFiles from './ensure-dev-files';
 
 interface StandAlone {
     pull?: boolean,
@@ -48,6 +49,9 @@ export default class Up extends Command {
         const dockerDir = `${rootDir}/docker`;
         const ephemeralStorageDir = `${dockerDir}/_ephemeral-storage`;
         const hasBuilt = `${ephemeralStorageDir}/has_built`;
+
+        const EnsureDevFilesC = new EnsureDevFiles(this.argv, this.config);
+        await EnsureDevFilesC.run();
 
         const hasPulled = fs.existsSync(hasBuilt);
 

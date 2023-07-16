@@ -4,6 +4,7 @@ services:
   web:
     env_file:
       - ./web/.env.dev
+      - ./web/.env.local
     container_name: blueoceandocker_web
     image: ghcr.io/buzzingpixel/blueoceandocker_web
     environment:
