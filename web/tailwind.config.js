@@ -17,5 +17,6 @@ module.exports = {
         // https://github.com/tailwindlabs/tailwindcss-typography/blob/master/src/styles.js
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
+        require('@tailwindcss/forms'),
     ],
 };
