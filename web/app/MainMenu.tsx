@@ -19,6 +19,10 @@ function classNames (...classes: string[]) {
     return classes.filter(Boolean).join(' ');
 }
 
+const LessonsForMenu = Lessons;
+
+LessonsForMenu.pop();
+
 export const Menu = [
     {
         name: 'Home',
@@ -26,7 +30,11 @@ export const Menu = [
     },
     {
         name: 'Lessons',
-        dropdown: Lessons,
+        dropdown: LessonsForMenu,
+    },
+    {
+        name: 'Get Updates',
+        href: '/lesson/sign-up-for-more',
     },
     {
         name: 'About',

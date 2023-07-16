@@ -17,4 +17,11 @@ export const Lessons = [
         href: '/lesson/running-a-container',
         youTubeId: null,
     },
+    {
+        name: 'There’s more coming soon!',
+        description: 'Sign up to get updates when new content comes out!',
+        href: '/lesson/sign-up-for-more',
+        isLastPage: true,
+        youTubeId: null,
+    },
 ];
