@@ -1,0 +1,59 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: Build images and push to registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - id: commit
+        uses: pr-mpt/actions-commit-hash@v2
+      - name: Create buildx context
+        run: docker buildx create --use
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+      - name: Build web image
+        run: >
+          docker buildx build
+          --platform=linux/amd64
+          --file docker/web/Dockerfile
+          --cache-from ghcr.io/buzzingpixel/blueoceandocker_web
+          --build-arg BUILDKIT_INLINE_CACHE=1
+          --tag ghcr.io/buzzingpixel/blueoceandocker_web:${{ steps.commit.outputs.hash }}
+          --push
+          .
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - id: commit
+        uses: pr-mpt/actions-commit-hash@v2
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+      - name: Run Hadolint
+        run: >
+          docker run --rm -i
+          -v "${{ github.workspace }}/.hadolint.yaml:/.config/hadolint.yaml"
+          hadolint/hadolint < ${{ github.workspace }}/docker/web/Dockerfile
+      - name: Run eslint
+        run: >
+          docker run
+          -it
+          --rm
+          --entrypoint ""
+          ghcr.io/buzzingpixel/blueoceandocker_web:${{ steps.commit.outputs.hash }}
+          sh -c "NODE_OPTIONS=\"--trace-warnings\" yarn lint"
+      - name: Run tsc
+        run: >
+          docker run
+          -it
+          --rm
+          --entrypoint ""
+          ghcr.io/buzzingpixel/blueoceandocker_web:${{ steps.commit.outputs.hash }}
+          sh -c "yarn tsc"
+

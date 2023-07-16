@@ -42,7 +42,7 @@ export async function generateMetadata (
     { params }: {
         params: { slug: string };
     },
-    parent?: ResolvingMetadata,
+    parent: ResolvingMetadata,
 ): Promise<Metadata> {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
