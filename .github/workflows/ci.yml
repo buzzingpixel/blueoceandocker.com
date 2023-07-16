@@ -61,5 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
+      - id: commit
+        uses: pr-mpt/actions-commit-hash@v2
       - name: Tag images after successful testing
         run: docker buildx imagetools create ghcr.io/buzzingpixel/blueoceandocker_web:${{ steps.commit.outputs.hash }} --tag ghcr.io/buzzingpixel/blueoceandocker_web:latest
