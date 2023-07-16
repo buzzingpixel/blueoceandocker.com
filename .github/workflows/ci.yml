@@ -58,4 +58,10 @@ jobs:
           --entrypoint ""
           ghcr.io/buzzingpixel/blueoceandocker_web:${{ steps.commit.outputs.hash }}
           sh -c "yarn tsc"
-
+  tag:
+    name: Tag images after successful testing
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Tag images after successful testing
+        run: docker buildx imagetools create ghcr.io/buzzingpixel/blueoceandocker_web:${{ steps.commit.outputs.hash }} --tag ghcr.io/buzzingpixel/blueoceandocker_web:latest
