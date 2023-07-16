@@ -45,7 +45,6 @@ jobs:
       - name: Run eslint
         run: >
           docker run
-          -it
           --rm
           --entrypoint ""
           ghcr.io/buzzingpixel/blueoceandocker_web:${{ steps.commit.outputs.hash }}
@@ -53,7 +52,6 @@ jobs:
       - name: Run tsc
         run: >
           docker run
-          -it
           --rm
           --entrypoint ""
           ghcr.io/buzzingpixel/blueoceandocker_web:${{ steps.commit.outputs.hash }}
