@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  web:
+    deploy:
+      rollback_config:
+        order: start-first
+      update_config:
+        order: start-first
+      labels:
+        ## Traefik config ##
+        - traefik.enable=true
+        - traefik.http.services.blueoceandocker_web.loadbalancer.server.port=80
+
+        ## Redirect non-www to www
+        # WWW Redirect Middleware
+        - traefik.http.middlewares.blueoceandocker_www_redirect_regex.redirectregex.regex=^http(s?)://blueoceandocker.com/(.*)
+        - traefik.http.middlewares.blueoceandocker_www_redirect_regex.redirectregex.replacement=http://www.blueoceandocker.com/$${2}
+        - traefik.http.middlewares.blueoceandocker_www_redirect_regex.redirectregex.permanent=true
+        # Insecure redirect
+        - traefik.http.routers.blueoceandocker_www_redirect_router.entrypoints=web
+        - traefik.http.routers.blueoceandocker_www_redirect_router.rule=Host(`blueoceandocker.com`)
+        - traefik.http.routers.blueoceandocker_www_redirect_router.middlewares=blueoceandocker_www_redirect_regex
+        # Secure redirect
+        - traefik.http.routers.blueoceandocker_secure_www_redirect_router.entrypoints=websecure
+        - traefik.http.routers.blueoceandocker_secure_www_redirect_router.rule=Host(`blueoceandocker.com`)
+        - traefik.http.routers.blueoceandocker_secure_www_redirect_router.tls=true
+        - traefik.http.routers.blueoceandocker_secure_www_redirect_router.middlewares=blueoceandocker_www_redirect_regex
+        ## END Redirect non-www to www
+
+        - traefik.http.routers.blueoceandocker_web.entrypoints=web
+        - traefik.http.routers.blueoceandocker_web.rule=Host(`www.blueoceandocker.com`)
+        - traefik.http.routers.blueoceandocker_web.middlewares=https-redirect
+        - traefik.http.routers.blueoceandocker_web_secure.entrypoints=websecure
+        - traefik.http.routers.blueoceandocker_web_secure.tls=true
+        - traefik.http.routers.blueoceandocker_web_secure.rule=Host(`www.blueoceandocker.com`)
+    env_file:
+      - ./web/.env.prod
+      - ./web/.env.local
+    image: ghcr.io/buzzingpixel/blueoceandocker_web
+    environment:
+      - HOSTNAME=blueoceandocker_web
+    networks:
+      - traefik
+      - default
+
+networks:
+  traefik:
+    name: traefik
+    external: true
