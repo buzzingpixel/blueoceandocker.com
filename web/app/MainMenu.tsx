@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import {
     Dialog,
     Disclosure,
@@ -15,6 +15,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 import { Lessons } from './Lessons';
 import { MenuTopLevel } from './Menu';
+import MainMenuDropdownItemDesktop from './MainMenuDropdownItemDesktop';
 
 function classNames (...classes: string[]) {
     return classes.filter(Boolean).join(' ');
@@ -99,25 +100,25 @@ const MainMenu = () => {
                                         leaveFrom="opacity-100 translate-y-0"
                                         leaveTo="opacity-0 translate-y-1"
                                     >
-                                        <Popover.Panel className="absolute -left-8 top-full z-50 mt-3 w-screen max-w-sm overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                                            <div className="p-4">
-                                                {menuItem.dropdown.map((item) => (
-                                                    <div
-                                                        key={item.name}
-                                                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
-                                                    >
-                                                        <div className="flex-auto">
-                                                            <Link
-                                                                href={item.href}
-                                                                className="block font-semibold text-gray-900"
-                                                            >
-                                                                {item.name}
-                                                                <span className="absolute inset-0" />
-                                                            </Link>
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </div>
+                                        <Popover.Panel
+                                            className="absolute -left-8 top-full z-50 mt-3 w-screen max-w-sm overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
+                                        >
+                                            {/* Not used??? Come on eslint */}
+                                            {/* eslint-disable-next-line react/no-unused-prop-types */}
+                                            {({ close }: { close: () => void }) => (
+                                                <div className="p-4">
+                                                    {/* We checked this above. Sigh. Typescript is not too bright sometimes */}
+                                                    {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                                                    {/* @ts-ignore */}
+                                                    {menuItem.dropdown.map((item) => (
+                                                        <MainMenuDropdownItemDesktop
+                                                            key={item.href}
+                                                            close={close}
+                                                            item={item}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
                                         </Popover.Panel>
                                     </Transition>
                                 </Popover>
