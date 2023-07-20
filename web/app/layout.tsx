@@ -1,10 +1,21 @@
 import React from 'react';
 import './app-style.css';
+import { Metadata } from 'next';
 import MainMenu from './MainMenu';
 
-export const metadata = {
+export const metadata: Metadata = {
     title: 'Blue Ocean Docker',
     description: 'Learn all about how to use Docker!',
+    alternates: {
+        types: {
+            'application/rss+xml': [
+                {
+                    title: 'Blue Ocean Docker RSS Feed',
+                    url: 'https://www.blueoceandocker.com/feed.xml',
+                },
+            ],
+        },
+    },
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
