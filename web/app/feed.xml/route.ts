@@ -3,9 +3,11 @@ import { Lessons } from '../Lessons';
 
 export async function GET () {
     const siteUrl = 'https://www.blueoceandocker.com';
-    const lessons = Lessons.reverse().filter(
+    const lessons = Lessons.filter(
         (lesson) => !!lesson.youTubeId || !!lesson.date,
     );
+
+    lessons.reverse();
 
     const feed = new Rss({
         title: 'Lessons from Blue Ocean Docker',
