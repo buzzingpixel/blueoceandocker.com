@@ -22,6 +22,7 @@ export const Lessons: LessonsType = [
         description: 'Learn about the important key concepts of Docker',
         href: '/lesson/key-concepts',
         youTubeId: 'aRB2a70Teuk',
+        date: new Date('2023-07-22T18:40:00-06:00'),
     },
     {
         name: 'Lesson 3: Running a Container',
