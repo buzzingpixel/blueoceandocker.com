@@ -21,7 +21,7 @@ export const Lessons: LessonsType = [
         name: 'Lesson 2: Key Concepts',
         description: 'Learn about the important key concepts of Docker',
         href: '/lesson/key-concepts',
-        youTubeId: null,
+        youTubeId: 'aRB2a70Teuk',
     },
     {
         name: 'Lesson 3: Running a Container',
