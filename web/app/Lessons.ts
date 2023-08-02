@@ -28,7 +28,8 @@ export const Lessons: LessonsType = [
         name: 'Lesson 3: Running a Container',
         description: 'Learn how to set up and run a Docker container',
         href: '/lesson/running-a-container',
-        youTubeId: null,
+        youTubeId: 'IuQXVzaQyoI',
+        date: new Date('2023-08-20T00:00:00-06:00'),
     },
     {
         name: 'There’s more coming soon!',
