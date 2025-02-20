@@ -17,21 +17,18 @@ export async function POST (req: NextRequest) {
     }
 
     try {
-        const audienceId = process.env.MAILCHIMP_AUDIENCE_ID;
-        const apiKey = process.env.MAILCHIMP_API_KEY;
-        const dataCenter = process.env.MAILCHIMP_API_SERVER;
-        const data = {
-            email_address: email,
-            status: 'subscribed',
-        };
-
         const response = await fetch(
-            `https://${dataCenter}.api.mailchimp.com/3.0/lists/${audienceId}/members`,
+            'https://connect.mailerlite.com/api/subscribers',
             {
-                body: JSON.stringify(data),
+                body: JSON.stringify({
+                    email,
+                    groups: [process.env.MAILERLITE_GROUP_ID],
+                    status: 'active',
+                }),
                 headers: {
-                    Authorization: `apikey ${apiKey}`,
+                    Authorization: `Bearer ${process.env.MAILERLITE_API_KEY}`,
                     'Content-Type': 'application/json',
+                    Accept: 'application/json',
                 },
                 method: 'POST',
             },
@@ -42,12 +39,8 @@ export async function POST (req: NextRequest) {
         if (response.status >= 400) {
             return NextResponse.json(
                 {
-                    status: responseJson.title === 'Member Exists'
-                        ? ResponseStatus.EXISTS
-                        : ResponseStatus.FAILURE,
-                    message: responseJson.title === 'Member Exists'
-                        ? 'You\'re already subscribed'
-                        : 'An unknown error occurred',
+                    status: responseJson.message,
+                    message: responseJson.message,
                 },
                 { status: response.status },
             );
