@@ -1,6 +1,29 @@
 version: '3.8'
 
 services:
+  letsencrypt:
+    container_name: blueoceandocker_letsencrypt
+    image: nginx
+    volumes:
+      - ../letsencrypt:/usr/share/nginx/html:delegated
+    expose:
+      - 80
+    networks:
+      traefik:
+      default:
+    labels:
+      ## Traefik config ##
+      - traefik.enable=true
+      - traefik.docker.network=traefik-dev_default
+
+      ## Traefik Web ##
+      - traefik.http.routers.blueoceandocker_letsencrypt_web.entrypoints=web
+      - traefik.http.routers.blueoceandocker_letsencrypt_web.rule=Host(`blueoceandocker.localtest.me`) && PathPrefix(`/.well-known`)
+
+      - traefik.http.routers.blueoceandocker_letsencrypt_web_secure.entrypoints=websecure
+      - traefik.http.routers.blueoceandocker_letsencrypt_web_secure-secure.tls=true
+      - traefik.http.routers.blueoceandocker_letsencrypt_web_secure-secure.rule=Host(`blueoceandocker.localtest.me`) && PathPrefix(`/.well-known`)
+
   web:
     env_file:
       - ./web/.env.dev

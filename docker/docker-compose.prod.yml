@@ -1,6 +1,37 @@
 version: '3.8'
 
 services:
+  letsencrypt:
+    deploy:
+      rollback_config:
+        order: start-first
+      update_config:
+        order: start-first
+      labels:
+        ## Traefik config ##
+        - traefik.enable=true
+        - traefik.http.services.blueoceandocker_letsencrypt.loadbalancer.server.port=80
+
+        - traefik.http.routers.blueoceandocker_letsencrypt_web.entrypoints=web
+        - traefik.http.routers.blueoceandocker_letsencrypt_web.rule=Host(`blueoceandocker.com`) && PathPrefix(`/.well-known`)
+
+        - traefik.http.routers.blueoceandocker_letsencrypt_web_secure.entrypoints=websecure
+        - traefik.http.routers.blueoceandocker_letsencrypt_web_secure.tls=true
+        - traefik.http.routers.blueoceandocker_letsencrypt_web_secure.rule=Host(`blueoceandocker.com`) && PathPrefix(`/.well-known`)
+
+        - traefik.http.routers.blueoceandocker_letsencrypt_web_www.entrypoints=web
+        - traefik.http.routers.blueoceandocker_letsencrypt_web_www.rule=Host(`www.blueoceandocker.com`) && PathPrefix(`/.well-known`)
+
+        - traefik.http.routers.blueoceandocker_letsencrypt_web_www_secure.entrypoints=websecure
+        - traefik.http.routers.blueoceandocker_letsencrypt_web_www_secure.tls=true
+        - traefik.http.routers.blueoceandocker_letsencrypt_web_www_secure.rule=Host(`www.blueoceandocker.com`) && PathPrefix(`/.well-known`)
+    image: nginx
+    volumes:
+      - /root/certbot/var/www/letsencrypt:/usr/share/nginx/html
+    networks:
+      - traefik
+      - default
+
   web:
     deploy:
       rollback_config:
