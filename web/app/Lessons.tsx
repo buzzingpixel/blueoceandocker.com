@@ -1,10 +1,11 @@
 import { MenuSecondLevelItem } from './Menu';
 
-type LessonItemType = {
+export type LessonItemType = {
     description: string;
     isLastPage?: boolean;
     youTubeId?: string | null;
     date?: Date;
+    hasContent?: boolean;
 };
 
 type LessonsType = Array<MenuSecondLevelItem & LessonItemType>;
@@ -23,6 +24,7 @@ export const Lessons: LessonsType = [
         href: '/lesson/key-concepts',
         youTubeId: 'aRB2a70Teuk',
         date: new Date('2023-07-22T18:40:00-06:00'),
+        hasContent: true,
     },
     {
         name: 'Lesson 3: Running a Container',

@@ -35,7 +35,7 @@ export default class Web extends Command {
         this.log(chalk.yellow("Remember to exit when you're done"));
 
         execSync(
-            'docker exec -it blueoceandocker_web sh;',
+            'docker exec -it blueoceandocker_web bash;',
             { stdio: 'inherit' },
         );
     }
