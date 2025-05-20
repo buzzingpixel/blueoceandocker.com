@@ -133,7 +133,25 @@ const Page = (
                         </div>
                     );
                 })()}
-                <div className="border-t border-gray-200 my-8 py-4 mx-auto max-w-6xl">
+                <div
+                    className={(() => {
+                        const classes = [
+                            'border-t',
+                            'border-gray-200',
+                            'my-8',
+                            'py-4',
+                            'mx-auto',
+                        ];
+
+                        if (currentLesson.hasContent) {
+                            classes.push('max-w-3xl');
+                        } else {
+                            classes.push('max-w-6xl');
+                        }
+
+                        return classes.join(' ');
+                    })()}
+                >
                     {lessonNav}
                 </div>
             </div>
