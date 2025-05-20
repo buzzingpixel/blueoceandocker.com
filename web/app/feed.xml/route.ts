@@ -13,7 +13,7 @@ export async function GET () {
         title: 'Lessons from Blue Ocean Docker',
         description: 'Learn how to use Docker to its fullest potential with the latest lessons from  Blue Ocean Docker',
         generator: 'Blue Ocean Docker',
-        feed_url: `${siteUrl}/rss.xml`,
+        feed_url: `${siteUrl}/feed.xml`,
         site_url: siteUrl,
         managingEditor: 'TJ Draper',
         webMaster: 'TJ Draper',
