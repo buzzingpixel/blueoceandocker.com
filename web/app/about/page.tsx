@@ -16,14 +16,14 @@ const Page = () => (
                                 Your Host,
                                 {' '}
                                 <a
-                                    href="https://buzzingpixel.com"
+                                    href="https://tjdraper.com"
                                     className="text-cyan-700 hover:text-cyan-500 underline"
                                 >
                                     TJ Draper
                                 </a>
                             </h1>
                             <p className="mt-6 text-lg leading-8 text-gray-600 text-justify">
-                                I&rsquo;m a senior software engineer at
+                                I&rsquo;m the director of web services at
                                 {' '}
                                 <a href="https://www.rxante.com" className="text-cyan-700 hover:text-cyan-500 underline">RxAnte</a>
                                 {' '}
