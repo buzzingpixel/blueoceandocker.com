@@ -5,7 +5,7 @@ import { Lessons } from '../Lessons';
 import LessonSignUpForm from './LessonSignUpForm';
 import LessonNav, { PaginationJustify } from './LessonNav';
 import typography from '../typography/typography';
-import LessonContent from '../LessonContent';
+import LessonContent from './LessonContent';
 
 const Page = (
     {
@@ -45,8 +45,6 @@ const Page = (
             paginationJustify={paginationJustify}
         />
     );
-
-    console.log(currentLesson);
 
     return (
         <>
