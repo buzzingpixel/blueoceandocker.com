@@ -28,7 +28,7 @@ import 'prism-themes/themes/prism-one-light.css';
 import 'markdown-it-github-alerts/styles/github-colors-light.css';
 import 'markdown-it-github-alerts/styles/github-base.css';
 
-function parseImageUrls (
+export function parseImageUrls (
     content: string,
     lessonHref: string,
 ): string {
