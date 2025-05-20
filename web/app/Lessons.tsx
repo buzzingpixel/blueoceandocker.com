@@ -17,6 +17,7 @@ export const Lessons: LessonsType = [
         href: '/',
         youTubeId: 'J3fk7fNMxGo',
         date: new Date('2023-07-17T08:00:00-06:00'),
+        hasContent: true,
     },
     {
         name: 'Lesson 2: Key Concepts',

@@ -53,8 +53,10 @@ export default function LessonContent (
         lesson: MenuSecondLevelItem & LessonItemType;
     },
 ) {
+    const href = lesson.href === '/' ? '' : lesson.href;
+
     const fileContents = fs.readFileSync(
-        `${process.cwd()}/public${lesson.href}/content.md`,
+        `${process.cwd()}/public${href}/content.md`,
     ).toString();
 
     const md = markdownit({
