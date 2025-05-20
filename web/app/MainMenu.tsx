@@ -35,17 +35,8 @@ export const Menu:MenuTopLevel = [
         dropdown: LessonsForMenu,
     },
     {
-        name: 'Get Updates',
-        dropdown: [
-            {
-                name: 'Email Updates',
-                href: '/lesson/sign-up-for-more',
-            },
-            {
-                name: 'RSS Feed',
-                href: '/feed.xml',
-            },
-        ],
+        name: 'RSS Feed',
+        href: '/feed.xml',
     },
     {
         name: 'About',

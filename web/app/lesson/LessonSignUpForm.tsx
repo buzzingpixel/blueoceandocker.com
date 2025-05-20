@@ -1,7 +1,40 @@
 'use client';
 
-import React, { FormEvent, useRef, useState } from 'react';
-import { ResponseStatus } from './send-sign-up-request/ResponseStatus';
+import React from 'react';
+// import { ResponseStatus } from './send-sign-up-request/ResponseStatus';
+
+// const inputRef = useRef<HTMLInputElement>(null);
+
+// const [isSubmitting, setIsSubmitting] = useState(false);
+
+// const [message, setMessage] = useState<{
+//     status: string;
+//     message: string;
+// } | null>(null);
+
+// const subscribeEmailAddress = async (e: FormEvent) => {
+//     e.preventDefault();
+//
+//     setIsSubmitting(true);
+//
+//     const res = await (fetch('/lesson/send-sign-up-request', {
+//         body: JSON.stringify({
+//             email: inputRef?.current?.value,
+//         }),
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         method: 'POST',
+//     }));
+//
+//     const json = await res.json();
+//
+//     setMessage(json);
+//
+//     setTimeout(() => {
+//         setIsSubmitting(false);
+//     }, 100);
+// };
 
 const LessonSignUpForm = (
     {
@@ -9,65 +42,28 @@ const LessonSignUpForm = (
     }: {
         isLastPage: boolean;
     },
-) => {
-    const inputRef = useRef<HTMLInputElement>(null);
-
-    const [isSubmitting, setIsSubmitting] = useState(false);
-
-    const [message, setMessage] = useState<{
-        status: string;
-        message: string;
-    } | null>(null);
-
-    const subscribeEmailAddress = async (e: FormEvent) => {
-        e.preventDefault();
-
-        setIsSubmitting(true);
-
-        const res = await (fetch('/lesson/send-sign-up-request', {
-            body: JSON.stringify({
-                email: inputRef?.current?.value,
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: 'POST',
-        }));
-
-        const json = await res.json();
-
-        setMessage(json);
-
-        setTimeout(() => {
-            setIsSubmitting(false);
-        }, 100);
-    };
-
-    return (
-        <div className="bg-gray-900 py-16 sm:py-24 lg:py-36 xl:py-52 text-center">
-            <div className="mx-auto grid px-6 lg:px-8 max-w-xl">
-                <div className="text-xl sm:text-3xl font-bold tracking-tight text-white mb-4">
-                    {(() => {
-                        if (isLastPage) {
-                            return (
-                                <>
-                                    <h2 className="mb-2">I&rsquo;m working on more lessons!</h2>
-                                    {' '}
-                                    <p>Get notified when they&rsquo;re released.</p>
-                                </>
-                            );
-                        }
-
+) => (
+    <div className="bg-gray-900 py-16 sm:py-24 lg:py-36 xl:py-52 text-center">
+        <div className="mx-auto grid px-6 lg:px-8 max-w-xl">
+            <div className="text-xl sm:text-3xl font-bold tracking-tight text-white mb-4">
+                {(() => {
+                    if (isLastPage) {
                         return (
                             <>
-                                <h2 className="mb-2">This lesson is coming soon!</h2>
-                                {' '}
-                                <p>Get notified when it&rsquo;s released.</p>
+                                <h2 className="mb-8">I&rsquo;m working on more lessons!</h2>
+                                <p className="font-normal text-xl">Subscribe to the RSS feed if you&rsquo;d like to know when more lessons are released!</p>
                             </>
                         );
-                    })()}
-                </div>
-                {(() => {
+                    }
+
+                    return (
+                        <>
+                            <h2 className="mb-2">This lesson is coming soon!</h2>
+                        </>
+                    );
+                })()}
+            </div>
+            {/* {(() => {
                     if (message) {
                         let fontColor = 'text-cyan-200';
 
@@ -116,10 +112,8 @@ const LessonSignUpForm = (
                             </div>
                         </form>
                     );
-                })()}
-            </div>
+                })()} */}
         </div>
-    );
-};
-
+    </div>
+);
 export default LessonSignUpForm;
