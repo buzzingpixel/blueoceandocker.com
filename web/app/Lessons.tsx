@@ -33,6 +33,7 @@ export const Lessons: LessonsType = [
         href: '/lesson/running-a-container',
         youTubeId: 'IuQXVzaQyoI',
         date: new Date('2023-08-20T00:00:00-06:00'),
+        hasContent: true,
     },
     {
         name: 'There’s more coming soon!',
