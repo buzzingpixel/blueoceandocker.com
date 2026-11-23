@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM node:26.13.1 AS base
+FROM node:26.13.1 AS base
 
 # Node 26 images no longer ship Yarn or Corepack
 RUN npm install --global yarn@1.22.22
@@ -6,7 +6,7 @@ RUN npm install --global yarn@1.22.22
 ######################
 # Dependency installer
 ######################
-FROM --platform=$TARGETPLATFORM base AS deps
+FROM base AS deps
 WORKDIR /app
 COPY web/package.json web/yarn.lock ./
 RUN yarn --network-timeout 600000 --frozen-lockfile --no-progress
@@ -15,7 +15,7 @@ RUN yarn --network-timeout 600000 --frozen-lockfile --no-progress
 #####################
 # Source code builder
 #####################
-FROM --platform=$TARGETPLATFORM base AS builder
+FROM base AS builder
 WORKDIR /app
 COPY ./web .
 COPY --from=deps /app/node_modules ./node_modules
@@ -25,7 +25,7 @@ RUN yarn build
 ####################
 # Application runner
 ####################
-FROM --platform=$TARGETPLATFORM base AS runner
+FROM base AS runner
 
 WORKDIR /app
 
@@ -52,6 +52,6 @@ ENV PORT 80
 # Uncomment the following line in case you want to disable telemetry.
 ENV NEXT_TELEMETRY_DISABLED 1
 
-HEALTHCHECK --interval=5s --timeout=5s --start-period=10s --retries=10 CMD curl --fail http://localhost/healthcheck/64acc1d2d0301 || exit 1
+HEALTHCHECK --interval=5s --timeout=5s --start-period=10s --retries=10 CMD ["sh", "-c", "curl --fail http://localhost/healthcheck/64acc1d2d0301 || exit 1"]
 
 CMD ["node_modules/.bin/next", "start", "-p", "80"]
