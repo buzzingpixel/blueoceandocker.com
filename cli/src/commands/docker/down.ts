@@ -2,6 +2,7 @@ import { Command } from '@oclif/core';
 import { execSync } from 'node:child_process';
 import * as fs from 'fs-extra';
 import chalk from 'chalk';
+import composeCommand from '../../compose-command';
 
 export default class Down extends Command {
     public static summary = 'Stops the Docker environment';
@@ -15,7 +16,7 @@ export default class Down extends Command {
         execSync(
             `
                 cd ${dockerDir};
-                docker compose -f docker-compose.dev.yml -p blueoceandocker down;
+                ${composeCommand(dockerDir, 'down')};
             `,
             { stdio: 'inherit' },
         );

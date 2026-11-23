@@ -4,6 +4,7 @@ import * as fs from 'fs-extra';
 import chalk from 'chalk';
 import Build from './build';
 import EnsureDevFiles from './ensure-dev-files';
+import composeCommand from '../../compose-command';
 
 interface StandAlone {
     pull?: boolean,
@@ -94,7 +95,7 @@ export default class Up extends Command {
             execSync(
                 `
                     cd ${dockerDir};
-                    docker compose -f docker-compose.dev.yml -p blueoceandocker up;
+                    ${composeCommand(dockerDir, 'up')};
                 `,
                 { stdio: 'inherit' },
             );
@@ -105,7 +106,7 @@ export default class Up extends Command {
         execSync(
             `
                 cd ${dockerDir};
-                docker compose -f docker-compose.dev.yml -p blueoceandocker up -d;
+                ${composeCommand(dockerDir, 'up -d')};
             `,
             { stdio: 'inherit' },
         );

@@ -9,3 +9,6 @@
 *.swo
 *.swp
 *.vi
+
+# Machine-specific Docker overrides (e.g. Ivy dev hostnames)
+/docker/docker-compose.local.yml
