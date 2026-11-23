@@ -1,6 +1,5 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/no-danger */
-import React from 'react';
 import { Lessons } from '../Lessons';
 import LessonSignUpForm from './LessonSignUpForm';
 import LessonNav, { PaginationJustify } from './LessonNav';
@@ -14,9 +13,9 @@ const Page = (
         href: string;
     },
 ) => {
-    const currentLesson = Lessons.filter(
+    const currentLesson = Lessons.find(
         (lesson) => lesson.href === href,
-    )[0];
+    );
 
     const currentIndex = Lessons.findIndex(
         (lesson) => lesson.href === href,
@@ -54,7 +53,7 @@ const Page = (
                         Blue Ocean Docker
                     </h2>
                     <p
-                        className="mt-4 text-base sm:text-2xl font-semibold leading-7 text-cyan-600"
+                        className="mt-4 text-base sm:text-2xl font-semibold leading-7 sm:leading-8 text-cyan-600"
                         dangerouslySetInnerHTML={{
                             __html: typography(currentLesson.name),
                         }}

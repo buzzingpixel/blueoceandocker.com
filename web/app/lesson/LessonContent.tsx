@@ -1,6 +1,5 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/no-danger */
-import React from 'react';
 import markdownit from 'markdown-it';
 import markdownitgithubalerts from 'markdown-it-github-alerts';
 import fs from 'node:fs';
@@ -35,7 +34,7 @@ export function parseImageUrls (
     return content.replace(
         /(<img.+src=")(.*)(">)/ig,
         (a: string, b: string, c: string, d: string) => {
-            if (c.indexOf('./') !== 0) {
+            if (!c.startsWith('./')) {
                 return a;
             }
 

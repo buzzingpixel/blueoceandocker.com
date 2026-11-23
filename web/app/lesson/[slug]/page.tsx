@@ -1,17 +1,14 @@
-import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata, ResolvingMetadata } from 'next';
 import { Lessons } from '../../Lessons';
 import LessonPage from '../LessonPage';
 
-const getCurrentLesson = ({ params }: {
-    params: { slug: string };
-}) => {
-    const href = `/lesson/${params.slug}`;
+const getCurrentLesson = (slug: string) => {
+    const href = `/lesson/${slug}`;
 
-    const currentLesson = Lessons.filter(
+    const currentLesson = Lessons.find(
         (lesson) => lesson.href === href,
-    )[0];
+    );
 
     if (!currentLesson) {
         return null;
@@ -40,7 +37,7 @@ export const generateStaticParams = async () => {
 
 export async function generateMetadata (
     { params }: {
-        params: { slug: string };
+        params: Promise<{ slug: string }>;
     },
     parent: ResolvingMetadata,
 ): Promise<Metadata> {
@@ -52,7 +49,9 @@ export async function generateMetadata (
         baseTitle = ` | ${baseTitle}`;
     }
 
-    const currentLesson = getCurrentLesson({ params });
+    const { slug } = await params;
+
+    const currentLesson = getCurrentLesson(slug);
 
     if (!currentLesson) {
         return {};
@@ -64,16 +63,18 @@ export async function generateMetadata (
     };
 }
 
-const Page = ({ params }: {
-    params: { slug: string };
+const Page = async ({ params }: {
+    params: Promise<{ slug: string }>;
 }) => {
-    const currentLesson = getCurrentLesson({ params });
+    const { slug } = await params;
+
+    const currentLesson = getCurrentLesson(slug);
 
     if (!currentLesson) {
         return notFound();
     }
 
-    return <LessonPage href={`/lesson/${params.slug}`} />;
+    return <LessonPage href={`/lesson/${slug}`} />;
 };
 
 export default Page;

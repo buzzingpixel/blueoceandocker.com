@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { MenuSecondLevelItem } from './Menu';
 
 const MainMenuDropdownItemDesktop = (

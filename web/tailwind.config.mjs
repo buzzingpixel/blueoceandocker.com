@@ -1,6 +1,9 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+import aspectRatio from '@tailwindcss/aspect-ratio';
+import forms from '@tailwindcss/forms';
+import typography from '@tailwindcss/typography';
+import defaultTheme from 'tailwindcss/defaultTheme';
 
-module.exports = {
+export default {
     content: [
         './app/**/*.{js,ts,jsx,tsx}',
         './pages/**/*.{js,ts,jsx,tsx}',
@@ -25,16 +28,16 @@ module.exports = {
                             'background-color': 'hsl(0, 0%, 92%)',
                             'border-radius': 'var(--radius-sm)',
                         },
-                    }
-                }
+                    },
+                },
             }),
         },
     },
     plugins: [
         // Customize: https://github.com/tailwindlabs/tailwindcss-typography#customization
         // https://github.com/tailwindlabs/tailwindcss-typography/blob/master/src/styles.js
-        require('@tailwindcss/typography'),
-        require('@tailwindcss/aspect-ratio'),
-        require('@tailwindcss/forms'),
+        typography,
+        aspectRatio,
+        forms,
     ],
 };

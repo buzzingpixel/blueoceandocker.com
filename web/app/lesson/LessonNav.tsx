@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
-import React from 'react';
 import { LessonItemType } from '../Lessons';
 import { MenuSecondLevelItem } from '../Menu';
 

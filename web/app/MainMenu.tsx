@@ -1,10 +1,16 @@
 'use client';
 
-import React, { Fragment, useState } from 'react';
+import { Fragment, useState } from 'react';
 import {
     Dialog,
+    DialogPanel,
     Disclosure,
+    DisclosureButton,
+    DisclosurePanel,
     Popover,
+    PopoverButton,
+    PopoverGroup,
+    PopoverPanel,
     Transition,
 } from '@headlessui/react';
 import {
@@ -25,7 +31,7 @@ const LessonsForMenu = Lessons;
 
 LessonsForMenu.pop();
 
-export const Menu:MenuTopLevel = [
+export const Menu: MenuTopLevel = [
     {
         name: 'Home',
         href: '/',
@@ -62,7 +68,7 @@ const MainMenu = () => {
                             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                         </button>
                     </div>
-                    <Popover.Group className="hidden lg:flex lg:gap-x-12 mx-auto">
+                    <PopoverGroup className="hidden lg:flex lg:gap-x-12 mx-auto">
                         {Menu.map((menuItem) => {
                             if (!menuItem.dropdown) {
                                 return (
@@ -78,10 +84,10 @@ const MainMenu = () => {
 
                             return (
                                 <Popover className="relative" key={menuItem.name}>
-                                    <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                                    <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                                         {menuItem.name}
                                         <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
-                                    </Popover.Button>
+                                    </PopoverButton>
                                     <Transition
                                         as={Fragment}
                                         enter="transition ease-out duration-200"
@@ -91,7 +97,7 @@ const MainMenu = () => {
                                         leaveFrom="opacity-100 translate-y-0"
                                         leaveTo="opacity-0 translate-y-1"
                                     >
-                                        <Popover.Panel
+                                        <PopoverPanel
                                             className="absolute -left-8 top-full z-50 mt-3 w-screen max-w-sm overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
                                         >
                                             {/* Not used??? Come on eslint */}
@@ -110,16 +116,16 @@ const MainMenu = () => {
                                                     ))}
                                                 </div>
                                             )}
-                                        </Popover.Panel>
+                                        </PopoverPanel>
                                     </Transition>
                                 </Popover>
                             );
                         })}
-                    </Popover.Group>
+                    </PopoverGroup>
                 </nav>
                 <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
                     <div className="fixed inset-0 z-50" />
-                    <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                    <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                         <div className="flex items-center justify-between">
                             <button
                                 type="button"
@@ -139,14 +145,14 @@ const MainMenu = () => {
                                                 <Disclosure as="div" className="-mx-3" key={menuItem.name}>
                                                     {({ open }) => (
                                                         <>
-                                                            <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                                                            <DisclosureButton className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                                                                 {menuItem.name}
                                                                 <ChevronDownIcon
                                                                     className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
                                                                     aria-hidden="true"
                                                                 />
-                                                            </Disclosure.Button>
-                                                            <Disclosure.Panel className="mt-2 space-y-2">
+                                                            </DisclosureButton>
+                                                            <DisclosurePanel className="mt-2 space-y-2">
                                                                 {/* We checked this above. Sigh. Typescript is not too bright sometimes */}
                                                                 {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
                                                                 {/* @ts-ignore */}
@@ -159,7 +165,7 @@ const MainMenu = () => {
                                                                         {item.name}
                                                                     </Link>
                                                                 ))}
-                                                            </Disclosure.Panel>
+                                                            </DisclosurePanel>
                                                         </>
                                                     )}
                                                 </Disclosure>
@@ -179,7 +185,7 @@ const MainMenu = () => {
                                 </div>
                             </div>
                         </div>
-                    </Dialog.Panel>
+                    </DialogPanel>
                 </Dialog>
             </div>
         </header>

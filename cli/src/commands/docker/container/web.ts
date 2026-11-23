@@ -1,4 +1,4 @@
-import { Command } from '@oclif/core';
+import { Args, Command } from '@oclif/core';
 import { execSync } from 'node:child_process';
 import chalk from 'chalk';
 
@@ -10,13 +10,12 @@ export default class Web extends Command {
 
     public static description = 'If this command is run without arguments, a shell session will be started in the web container and you will be placed in that shell session. However, any arguments provided will, instead, be passed into and run in the shell session and then the session will exit. The latter is most often how you will use this command.';
 
-    public static args = [
-        {
-            name: 'cmd',
+    public static args = {
+        cmd: Args.string({
             description: 'command',
-            default: null,
-        },
-    ];
+            required: false,
+        }),
+    };
 
     public async run (): Promise<void> {
         this.log(chalk.yellow(

@@ -1,4 +1,3 @@
-import React from 'react';
 import LessonPage from './lesson/LessonPage';
 import { Lessons } from './Lessons';
 
