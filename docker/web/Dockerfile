@@ -1,4 +1,7 @@
-FROM --platform=$TARGETPLATFORM node:18.16.1 AS base
+FROM --platform=$TARGETPLATFORM node:26.13.1 AS base
+
+# Node 26 images no longer ship Yarn or Corepack
+RUN npm install --global yarn@1.22.22
 
 ######################
 # Dependency installer
