@@ -29,7 +29,7 @@ FROM base AS runner
 
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/app ./app
@@ -45,12 +45,12 @@ COPY --from=builder /app/yarn.lock ./yarn.lock
 
 EXPOSE 80
 
-ENV PORT 80
+ENV PORT=80
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry.
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED=1
 
 HEALTHCHECK --interval=5s --timeout=5s --start-period=10s --retries=10 CMD ["sh", "-c", "curl --fail http://localhost/healthcheck/64acc1d2d0301 || exit 1"]
 
